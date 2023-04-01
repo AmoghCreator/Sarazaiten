@@ -10,6 +10,7 @@ function Menu(props) {
   }
   
   function sendPrompt(e) {
+    console.log(e.target.value)
     props.processPrompt(e.target.value) 
   }
 
