@@ -13,7 +13,8 @@ function PromptArea(props) {
 
   useEffect(()=>{
     let tempArr = qna;
-    tempArr.push({type : "usr" , qry : props.newPrompt})
+    tempArr.push({type : "ai" , qry : props.newPrompt})
+    console.log(tempArr);
     setQna([...tempArr]);
     console.log(qna);
   } , [props.newPrompt])
@@ -25,7 +26,11 @@ function PromptArea(props) {
      <div style={{minHeight: "10vh" , minWidth : "80vw"  , maxWidth : "80vw", minHeight : "80vh" , maxHeight : "80vh" , overflowY : "auto" , overflowX : "hidden"}}t>
 
         {qna.map((obj , index) => (
-          <h1 key={index} className={obj.type}>{obj.qry}</h1> 
+          <div>
+            <hr/>
+            <div key={index} className={obj.type} style={{whiteSpace : "pre"}} dangerouslySetInnerHTML={{ __html: obj.qry}} / >
+            <hr/>
+          </div>
         ))}
 
     </div>
