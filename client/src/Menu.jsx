@@ -18,7 +18,7 @@ function Menu(props) {
   } , [])
 
   return (
-    <div style={{maxWidth : "500px", display:"inline-block"}}> 
+    <div style={{maxWidth : "500px", }}> 
       <ul>
       {
       menuItems.map((items , index) => (

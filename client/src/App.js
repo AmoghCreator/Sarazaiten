@@ -7,7 +7,7 @@ function App() {
     console.log("works??" + value)
   }
   return (
-    <div className="">
+    <div className="" style={{display:"flex"}}>
       <Menu processPrompt={promptProcess} /> 
       <PromptArea />
     </div>
