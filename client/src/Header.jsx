@@ -2,12 +2,14 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header style={styles.header}>
-      <div style={styles.logoContainer}>
-        <div style={styles.logo}>S</div>
-        <h1 style={styles.appName}>sarazaiten</h1>
-      </div>
-    </header>
+    <div style={{ position: "sticky" }}>
+      <header style={styles.header}>
+        <div style={styles.logoContainer}>
+          <div style={styles.logo}>S</div>
+          <h1 style={styles.appName}>sarazaiten</h1>
+        </div>
+      </header>
+    </div>
   );
 };
 

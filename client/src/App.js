@@ -4,6 +4,7 @@ import PromptArea from "./PromptArea";
 import { useState } from "react";
 import axios from "axios";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function App() {
   const [loading, setLoading] = useState(false);
