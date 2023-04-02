@@ -6,7 +6,7 @@ import "./css/menu.css"
 function Menu(props) {
   const [menuItems , setMenuItems] = useState([]);
   async function getMenuItem() {
-    let data = await axios.get("https://sarazaiten.el.r.appspot.com/");
+    let data = await axios.get("http://localhost:8000/");
     setMenuItems(data.data) 
   }
   
@@ -24,7 +24,9 @@ function Menu(props) {
       <ul>
       {
       menuItems.map((items , index) => (
-        <button key={index} value={menuItems[index].prompt} onClick={sendPrompt} style={{display : "block"}}>{menuItems[index].title} </button>
+        <button key={index} value={menuItems[index].prompt} onClick={sendPrompt} style={{cursor: "pointer" , display : "block" , marginTop: "20px" , backgroundColor: "transparent", color: "white" , borderStyle : "none" , fontSize: "1em" , textAlign: "center"}}>
+          {menuItems[index].title} 
+        </button>
       ))
     } 
     </ul>

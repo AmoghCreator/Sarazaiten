@@ -10,7 +10,9 @@ function App() {
 
   async function promptProcess(value) {
     console.log(value);
-    let data = await axios.post("https://sarazaiten.el.r.appspot.com/course" , {prompt : value});
+    setLoading(true);
+    let data = await axios.post("http://localhost:8000/course" , {prompt : value});
+    setLoading(false);
     //let data = value;
     console.log(data)
     setPrompt(data.data);
@@ -18,7 +20,9 @@ function App() {
 
   async function qryPromptProcess(value) {
     console.log(value);
-    let data = await axios.post("https://sarazaiten.el.r.appspot.com/usrQry" , {prompt : value});
+    setLoading(true);
+    let data = await axios.post("http://localhost:8000/usrQry" , {prompt : value});
+    setLoading(false);
     //let data = value;
     console.log(data)
     setPrompt(data.data);
@@ -27,7 +31,7 @@ function App() {
   return (
     <div className="main" style={{display:"flex"}}>
       <Menu processPrompt={promptProcess} /> 
-      <PromptArea newPrompt={lastPrompt} processPrompt={qryPromptProcess}/>
+      <PromptArea newPrompt={lastPrompt} processPrompt={qryPromptProcess} loader={loading}/>
     </div>
   );
 }

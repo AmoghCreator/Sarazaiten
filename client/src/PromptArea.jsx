@@ -41,6 +41,7 @@ function PromptArea(props) {
         ))}
 
     </div>
+        {props.loader && <div style={{backgroundColor:"GREEN" , color:"white"}}>LOADING PLS WAIT</div>}
         <form onSubmit={handleSubmit(promptHandler)} style={{ marginBottom : "0px" , width:"100%"}} >
           <input id="usrPromptBox" {...register("userPrompt" , {required : true})} style={{width : "100%"}}/>
           <input id="usrLanguage" {...register("lang" , {required : true})} style={{width:"100%"}} placeholder="c++" />
