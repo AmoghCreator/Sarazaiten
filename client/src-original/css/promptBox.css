@@ -1,0 +1,18 @@
+.mainPromptStyle {
+  background-color: white;
+}
+
+.ai {
+  color: blue;
+}
+
+.usr {
+  color: green;
+}
+
+code {
+  padding-right: 200px;
+  background-color: #292929;
+  color: white;
+  line-height: 0;
+}

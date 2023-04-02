@@ -30,7 +30,7 @@ const completion = await openai.createChatCompletion({
   model: "gpt-3.5-turbo",
   messages: [{role: "user", content: req.body.prompt}],
 });
-
+console.log("done")
 res.send(completion.data.choices[0].message.content);
 });
 
@@ -40,6 +40,8 @@ const completion = await openai.createChatCompletion({
   model: "gpt-3.5-turbo",
   messages: [{role: "user", content: req.body.prompt}],
 });
+console.log("done")
+res.send(completion.data.choices[0].message.content);
 });
 
 app.post('/addPrompt' , async (req , res) => {
