@@ -83,7 +83,7 @@ function PromptArea(props) {
         <label style={{color: "white"}}>Enter your query</label>
         <input
           id="usrPromptBox"
-          {...register("userPrompt", { required: true })}
+          {...register("userPrompt", { required: false})}
           style={{
             width: "95%",
             backgroundColor: "gray",
