@@ -9,7 +9,7 @@ function Admin(props) {
   });
 
   async function formHandler(formData) {
-    axios.post("http://localhost:8000/addPrompt" , {title : formData.title , prompt : formData.prompt , img : formData.imgP}) 
+    axios.post("https://sarazaiten.el.r.appspot.com/addPrompt" , {title : formData.title , prompt : formData.prompt , img : formData.imgP}) 
   }
   return(
     <div> 

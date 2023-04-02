@@ -60,6 +60,6 @@ app.post('/addPrompt' , async (req , res) => {
   });   
 })
 
-app.listen(8000, ()=>{
+app.listen(process.env.port || 8080 , ()=>{
   console.log("server started at 8000");
 })

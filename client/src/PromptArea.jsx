@@ -35,7 +35,7 @@ function PromptArea(props) {
         {qna.map((obj , index) => (
           <div>
             <hr/>
-            <div key={index} className={obj.type} style={{whiteSpace : "pre"}} dangerouslySetInnerHTML={{ __html: obj.qry}} / >
+            <div key={index} className={obj.type} style={{whiteSpace : "pre" , wordWrap:"break-word"}} dangerouslySetInnerHTML={{ __html: obj.qry}} / >
             <hr/>
           </div>
         ))}

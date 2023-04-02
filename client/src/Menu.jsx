@@ -6,7 +6,7 @@ import "./css/menu.css"
 function Menu(props) {
   const [menuItems , setMenuItems] = useState([]);
   async function getMenuItem() {
-    let data = await axios.get("http://localhost:8000/");
+    let data = await axios.get("https://sarazaiten.el.r.appspot.com/");
     setMenuItems(data.data) 
   }
   

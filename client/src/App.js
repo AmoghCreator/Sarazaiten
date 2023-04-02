@@ -11,7 +11,7 @@ function App() {
   async function promptProcess(value) {
     console.log(value);
     setLoading(true);
-    let data = await axios.post("http://localhost:8000/course" , {prompt : value});
+    let data = await axios.post("https://sarazaiten.el.r.appspot.com/course" , {prompt : value});
     setLoading(false);
     //let data = value;
     console.log(data)
@@ -21,7 +21,7 @@ function App() {
   async function qryPromptProcess(value) {
     console.log(value);
     setLoading(true);
-    let data = await axios.post("http://localhost:8000/usrQry" , {prompt : value});
+    let data = await axios.post("https://sarazaiten.el.r.appspot.com/usrQry" , {prompt : value});
     setLoading(false);
     //let data = value;
     console.log(data)
