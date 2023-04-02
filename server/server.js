@@ -15,9 +15,23 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/' , (req , res) => {
-
   res.send(prompts);
 })
+
+app.post('/admin' , (req , res) => {
+
+})
+
+
+app.post('/usrQry' , async (req , res) => {
+console.log("loading...")
+const completion = await openai.createChatCompletion({
+  model: "gpt-3.5-turbo",
+  messages: [{role: "user", content: req.body.prompt}],
+});
+
+res.send(completion.data.choices[0].message.content);
+});
 
 app.post('/course' , async (req , res) => {
 console.log("loading...")
@@ -25,9 +39,10 @@ const completion = await openai.createChatCompletion({
   model: "gpt-3.5-turbo",
   messages: [{role: "user", content: req.body.prompt}],
 });
+
 res.send(completion.data.choices[0].message.content);
 })
 
-app.listen(8000 , ()=>{
+app.listen(8000, ()=>{
   console.log("server started at 8000");
 })

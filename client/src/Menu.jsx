@@ -1,11 +1,12 @@
 import axios from "axios";
 import {useState , useEffect} from 'react' ;
+import "./css/menu.css"
 ;
 
 function Menu(props) {
   const [menuItems , setMenuItems] = useState([]);
   async function getMenuItem() {
-    let data = await axios.get("http://localhost:8000/");
+    let data = await axios.get("https://sarazaiten.el.r.appspot.com/");
     setMenuItems(data.data) 
   }
   
@@ -19,7 +20,7 @@ function Menu(props) {
   } , [])
 
   return (
-    <div style={{maxWidth : "500px", }}> 
+    <div className="mainMenuStyle"style={{maxWidth : "500px", }}> 
       <ul>
       {
       menuItems.map((items , index) => (

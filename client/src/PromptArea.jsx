@@ -8,6 +8,9 @@ function PromptArea(props) {
     let tempArr = qna;
     tempArr.push({type : "usr" , qry : formData.userPrompt})
     setQna([...tempArr]);
+    let response = props.processPrompt(formData.userPrompt + " in " + formData.lang); 
+    tempArr.push({type : "ai" , qry : response.data})
+    setQna([...tempArr]);   
     console.log(qna);
   }
 
@@ -19,10 +22,14 @@ function PromptArea(props) {
     console.log(qna);
   } , [props.newPrompt])
 
-  const [qna , setQna] = useState([{type : "usr" , qry : "one"} , {type : "ai" , qry : "two"}]);
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const [qna , setQna] = useState([{type : "ai" , qry : "Hello there! I am Sarazaiten, and I will help you learn today :-)"}]);
+  const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    defaultValues : {
+      lang : "c++"
+    }
+  });
   return(
-    <div>
+    <div className='main'>
      <div style={{minHeight: "10vh" , minWidth : "80vw"  , maxWidth : "80vw", minHeight : "80vh" , maxHeight : "80vh" , overflowY : "auto" , overflowX : "hidden"}}t>
 
         {qna.map((obj , index) => (
@@ -36,6 +43,7 @@ function PromptArea(props) {
     </div>
         <form onSubmit={handleSubmit(promptHandler)} style={{ marginBottom : "0px" , width:"100%"}} >
           <input id="usrPromptBox" {...register("userPrompt" , {required : true})} style={{width : "100%"}}/>
+          <input id="usrLanguage" {...register("lang" , {required : true})} style={{width:"100%"}} placeholder="c++" />
           <button id="submitBtn">SUBMIT</button>
         </form>
     </div>
