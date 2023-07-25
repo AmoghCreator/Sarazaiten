@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import "./css/promptBox.css";
 
 function PromptArea(props) {
   async function promptHandler(formData) {
@@ -40,71 +39,53 @@ function PromptArea(props) {
     },
   });
   return (
-    <div className="main">
+    <div className="main p-4 bg-blue-100 rounded-lg shadow-lg">
       <div
+        className="overflow-auto max-w-md mx-auto mb-4 p-4 bg-white rounded-lg shadow-sm"
         style={{
           minHeight: "10vh",
           minWidth: "80vw",
           maxWidth: "80vw",
           minHeight: "75vh",
           maxHeight: "75vh",
-          overflowY: "auto",
-          overflowX: "hidden",
         }}
-        t
       >
         {qna.map((obj, index) => (
-          <div>
+          <div key={index}>
             <div
-              key={index}
-              className={obj.type}
-              style={{ whiteSpace: "pre", wordWrap: "break-word" }}
+              className={`p-2 mb-2 rounded-lg shadow-sm ${
+                obj.type === "ai" ? "bg-blue-200" : "bg-gray-200"
+              }`}
+              style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}
               dangerouslySetInnerHTML={{ __html: obj.qry }}
             />
-            <hr />
           </div>
         ))}
       </div>
       {props.loader && (
-        <div
-          style={{
-            backgroundColor: "GREEN",
-            color: "white",
-            textAlign: "center",
-          }}
-        >
-          LOADING PLEASE WAIT, REMEMBER TO SCROLL DOWN AFTER THIS MESSAGE DISSAPEARS
+        <div className="p-2 mb-4 text-center bg-green-500 text-white rounded-lg shadow-sm">
+          LOADING PLEASE WAIT, REMEMBER TO SCROLL DOWN AFTER THIS MESSAGE
+          DISAPPEARS
         </div>
       )}
       <form
         onSubmit={handleSubmit(promptHandler)}
-        style={{ marginBottom: "0px", width: "100%" }}
+        className="flex flex-col items-center"
       >
-        <label style={{color: "white"}}>Enter your query</label>
+        <label className="mb-2 text-black">Enter your query</label>
         <input
-          id="usrPromptBox"
-          {...register("userPrompt", { required: false})}
-          style={{
-            width: "95%",
-            backgroundColor: "gray",
-            border: "none",
-            height: "20px",
-          }}
+          {...register("userPrompt", { required: false })}
+          className="mb-2 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm"
         />
-        <br/>
-        <label style={{color: "white"}}>Enter programming language(s)</label>
+        <label className="mb-2 text-black">Enter programming language(s)</label>
         <input
-          id="usrLanguage"
           {...register("lang", { required: true })}
-          style={{
-            width: "95%",
-            backgroundColor: "gray",
-            border: "none",
-            height: "20px",
-          }}
+          className="mb-4 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm"
           placeholder="c++"
         />
-        <button id="submitBtn">SUBMIT</button>
+        <button className="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors">
+          SUBMIT
+        </button>
       </form>
     </div>
   );
