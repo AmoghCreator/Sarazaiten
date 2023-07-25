@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 function Menu(props) {
   const [menuItems, setMenuItems] = useState([]);
@@ -24,23 +24,29 @@ function Menu(props) {
 
   return (
     <div className="relative">
-      <button
-        className="block md:hidden py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors"
-        onClick={() => setShowMenu(!showMenu)}
-      >
-        <FontAwesomeIcon icon={faBars} />
-      </button>
+      <div className="sticky top-0 z-50 bg-blue-500">
+        <header className="container mx-auto px-4 py-2 flex items-center justify-between">
+          <div className="flex items-center">
+            <button
+              className="block md:hidden py-1 px-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors"
+              onClick={() => setShowMenu(!showMenu)}
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </button>
+            <h1
+              className="hidden md:block text-white text-2xl font-bold ml-4"
+              style={{ fontFamily: "Helvetica Neue, sans-serif" }}
+            >
+              SARAZAITEN
+            </h1>
+          </div>
+        </header>
+      </div>
       <div
         className={`${
           showMenu ? "block" : "hidden"
         } absolute md:relative md:block top-0 left-0 z-10 mainMenuStyle max-w-md mx-auto p-4 bg-blue-100 rounded-lg shadow-lg`}
       >
-        <button
-          className="absolute top-0 right-0 p-2 text-blue-800 hover:text-blue-900 transition-colors md:hidden"
-          onClick={() => setShowMenu(false)}
-        >
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
         <ul>
           {menuItems.map((item, index) => (
             <li key={index} className="mb-2">
