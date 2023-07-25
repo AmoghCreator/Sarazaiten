@@ -2,51 +2,14 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div style={{ position: "sticky" }}>
-      <header style={styles.header}>
-        <div style={styles.logoContainer}>
-          <div style={styles.logo}>S</div>
-          <h1 style={styles.appName}>SARAZAITEN</h1>
+    <div className="sticky top-0 z-50 bg-teal-700">
+      <header className="container mx-auto px-4 py-2 flex items-center justify-between">
+        <div className="flex items-center">
+          <h1 className="text-white text-2xl font-bold ml-4">SARAZAITEN</h1>
         </div>
       </header>
     </div>
   );
-};
-
-const styles = {
-  header: {
-    FontFace : "montserrat", 
-    backgroundColor: "#2C3333",
-    height: "50px",
-    display: "flex",
-    justifyContent: "left",
-    alignItems: "center",
-  },
-  logoContainer: {
-    display: "flex",
-    alignItems: "center",
-    marginRight: "10px",
-  },
-  logo: {
-    backgroundColor: "#CBE4DE",
-    color: "#0E8388",
-    borderRadius: "50%",
-    width: "40px",
-    height: "40px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "24px",
-    fontWeight: "bold",
-    marginRight: "16px",
-    marginLeft: "10px",
-  },
-  appName: {
-    color: "#CBE4DE",
-    fontSize: "28px",
-    fontWeight: "bold",
-    margin: "0",
-  },
 };
 
 export default Header;
