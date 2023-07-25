@@ -39,7 +39,7 @@ function PromptArea(props) {
     },
   });
   return (
-    <div className="main p-4 bg-blue-100 rounded-lg shadow-lg">
+    <div className="main p-1 bg-blue-100 rounded-lg shadow-lg">
       <div
         className="overflow-auto max-w-md mx-auto mb-4 p-4 bg-white rounded-lg shadow-sm"
         style={{
@@ -72,7 +72,7 @@ function PromptArea(props) {
         onSubmit={handleSubmit(promptHandler)}
         className="flex flex-col items-center"
       >
-        <label className="mb-2 text-black">Enter your query</label>
+        <label className="mb-2 text-">Enter your query</label>
         <input
           {...register("userPrompt", { required: false })}
           className="mb-2 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm"

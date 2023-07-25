@@ -34,8 +34,8 @@ function App() {
   }
 
   return (
-    <div>
-      <div className="main" style={{ display: "flex" }}>
+    <div className="overflow-none">
+      <div className="main flex">
         <Menu processPrompt={promptProcess} />
         <PromptArea
           newPrompt={lastPrompt}
