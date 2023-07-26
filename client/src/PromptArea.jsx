@@ -80,20 +80,23 @@ function PromptArea(props) {
       )}
       <form
         onSubmit={handleSubmit(promptHandler)}
-        className="flex flex-col items-center"
+        className="flex flex-col items-center md:flex-row md:w-full md:max-w-md md:m-auto"
       >
-        <label className="mb-2 text-black">Enter your query</label>
+        <label className="mb-2 text-black md:hidden">Enter your query</label>
         <input
           {...register("userPrompt", { required: false })}
-          className="mb-2 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm"
+          className="mb-2 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm md:w-auto md:flex-grow md:m-2"
+          placeholder="Enter your query"
         />
-        <label className="mb-2 text-black">Enter programming language(s)</label>
+        <label className="mb-2 text-black md:hidden">
+          Enter programming language(s)
+        </label>
         <input
           {...register("lang", { required: true })}
-          className="mb-4 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm"
-          placeholder="c++"
+          className="mb-4 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm md:w-auto md:flex-grow md:m-2"
+          placeholder="Enter programming language(s)"
         />
-        <button className="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors">
+        <button className="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors md:m-2">
           SUBMIT
         </button>
       </form>
