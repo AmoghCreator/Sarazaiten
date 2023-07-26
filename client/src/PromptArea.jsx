@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import "./css/promptBox.css";
+import { motion } from "framer-motion";
 
 function PromptArea(props) {
+  const [qna, setQna] = useState([
+    {
+      type: "ai",
+      qry: "Hello there! I am Sarazaiten, and I will help you learn today :-)\nBegin your journey of DSA by selecting a topic on the left\nyou can also ask your doubts and request specific codes using the inputs below\nHappy Learning :-)\nSarazaiten by Team 4th",
+    },
+  ]);
+
   async function promptHandler(formData) {
     let tempArr = qna;
     tempArr.push({ type: "usr", qry: formData.userPrompt });
@@ -13,6 +20,7 @@ function PromptArea(props) {
     tempArr.push({ type: "ai", qry: response.data });
     setQna([...tempArr]);
     console.log(qna);
+    reset();
   }
 
   useEffect(() => {
@@ -23,88 +31,73 @@ function PromptArea(props) {
     console.log(qna);
   }, [props.newPrompt]);
 
-  const [qna, setQna] = useState([
-    {
-      type: "ai",
-      qry: "Hello there! I am Sarazaiten, and I will help you learn today :-)\nBegin your journey of DSA by selecting a topic on the left\nyou can also ask your doubts and request specific codes using the inputs below\nHappy Learning :-)\nSarazaiten by Team 4th",
-    },
-  ]);
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
       lang: "c++",
+      userPrompt: "",
     },
   });
+
   return (
-    <div className="main">
+    <div className="main p-1 bg-blue-100 rounded-lg shadow-lg">
       <div
+        className="overflow-auto max-w-md mx-auto mb-4 p-4 bg-white rounded-lg shadow-sm"
         style={{
           minHeight: "10vh",
           minWidth: "80vw",
           maxWidth: "80vw",
-          minHeight: "75vh",
-          maxHeight: "75vh",
-          overflowY: "auto",
-          overflowX: "hidden",
+          minHeight: "85vh",
+          maxHeight: "85vh",
         }}
-        t
       >
         {qna.map((obj, index) => (
-          <div>
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
             <div
-              key={index}
-              className={obj.type}
-              style={{ whiteSpace: "pre", wordWrap: "break-word" }}
+              className={`p-2 mb-2 rounded-lg shadow-sm ${
+                obj.type === "ai" ? "bg-blue-200" : "bg-gray-200"
+              }`}
+              style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}
               dangerouslySetInnerHTML={{ __html: obj.qry }}
             />
-            <hr />
-          </div>
+          </motion.div>
         ))}
       </div>
       {props.loader && (
-        <div
-          style={{
-            backgroundColor: "GREEN",
-            color: "white",
-            textAlign: "center",
-          }}
-        >
-          LOADING PLEASE WAIT, REMEMBER TO SCROLL DOWN AFTER THIS MESSAGE DISSAPEARS
+        <div className="p-2 mb-4 text-center bg-green-500 text-white rounded-lg shadow-sm">
+          LOADING PLEASE WAIT, REMEMBER TO SCROLL DOWN
         </div>
       )}
       <form
         onSubmit={handleSubmit(promptHandler)}
-        style={{ marginBottom: "0px", width: "100%" }}
+        className="flex flex-col items-center md:flex-row md:w-full md:max-w-md md:m-auto"
       >
-        <label style={{color: "white"}}>Enter your query</label>
+        <label className="mb-2 text-black md:hidden">Enter your query</label>
         <input
-          id="usrPromptBox"
-          {...register("userPrompt", { required: false})}
-          style={{
-            width: "95%",
-            backgroundColor: "gray",
-            border: "none",
-            height: "20px",
-          }}
+          {...register("userPrompt", { required: false })}
+          className="mb-2 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm md:w-auto md:flex-grow md:m-2"
+          placeholder="Enter your query"
         />
-        <br/>
-        <label style={{color: "white"}}>Enter programming language(s)</label>
+        <label className="mb-2 text-black md:hidden">
+          Enter programming language(s)
+        </label>
         <input
-          id="usrLanguage"
           {...register("lang", { required: true })}
-          style={{
-            width: "95%",
-            backgroundColor: "gray",
-            border: "none",
-            height: "20px",
-          }}
-          placeholder="c++"
+          className="mb-4 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm md:w-auto md:flex-grow md:m-2"
+          placeholder="Enter programming language(s)"
         />
-        <button id="submitBtn">SUBMIT</button>
+        <button className="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors md:m-2">
+          SUBMIT
+        </button>
       </form>
     </div>
   );
