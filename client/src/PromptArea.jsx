@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
 
 function PromptArea(props) {
+  const [qna, setQna] = useState([
+    {
+      type: "ai",
+      qry: "Hello there! I am Sarazaiten, and I will help you learn today :-)\nBegin your journey of DSA by selecting a topic on the left\nyou can also ask your doubts and request specific codes using the inputs below\nHappy Learning :-)\nSarazaiten by Team 4th",
+    },
+  ]);
+
   async function promptHandler(formData) {
     let tempArr = qna;
     tempArr.push({ type: "usr", qry: formData.userPrompt });
@@ -12,6 +20,7 @@ function PromptArea(props) {
     tempArr.push({ type: "ai", qry: response.data });
     setQna([...tempArr]);
     console.log(qna);
+    reset();
   }
 
   useEffect(() => {
@@ -22,22 +31,18 @@ function PromptArea(props) {
     console.log(qna);
   }, [props.newPrompt]);
 
-  const [qna, setQna] = useState([
-    {
-      type: "ai",
-      qry: "Hello there! I am Sarazaiten, and I will help you learn today :-)\nBegin your journey of DSA by selecting a topic on the left\nyou can also ask your doubts and request specific codes using the inputs below\nHappy Learning :-)\nSarazaiten by Team 4th",
-    },
-  ]);
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
       lang: "c++",
+      userPrompt: "",
     },
   });
+
   return (
     <div className="main p-1 bg-blue-100 rounded-lg shadow-lg">
       <div
@@ -51,7 +56,12 @@ function PromptArea(props) {
         }}
       >
         {qna.map((obj, index) => (
-          <div key={index}>
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
             <div
               className={`p-2 mb-2 rounded-lg shadow-sm ${
                 obj.type === "ai" ? "bg-blue-200" : "bg-gray-200"
@@ -59,7 +69,7 @@ function PromptArea(props) {
               style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}
               dangerouslySetInnerHTML={{ __html: obj.qry }}
             />
-          </div>
+          </motion.div>
         ))}
       </div>
       {props.loader && (
@@ -72,7 +82,7 @@ function PromptArea(props) {
         onSubmit={handleSubmit(promptHandler)}
         className="flex flex-col items-center"
       >
-        <label className="mb-2 text-">Enter your query</label>
+        <label className="mb-2 text-black">Enter your query</label>
         <input
           {...register("userPrompt", { required: false })}
           className="mb-2 w-full p-2 bg-gray-300 border-none rounded-lg shadow-sm"

@@ -24,18 +24,18 @@ function Menu(props) {
 
   return (
     <div className="relative">
-      <div className="sticky top-0 z-50 bg-blue-500">
+      <div className="sticky top-0 z-50 bg-blue-400">
         <header className="container mx-auto px-4 py-2 flex items-center justify-between">
           <div className="flex items-center">
             <button
-              className="block md:hidden py-1 px-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors"
+              className="block md:hidden py-1 px-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-sm transition-colors "
               onClick={() => setShowMenu(!showMenu)}
             >
               <FontAwesomeIcon icon={faBars} />
             </button>
             <h1
-              className="hidden md:block text-white text-2xl font-bold ml-4"
-              style={{ fontFamily: "Helvetica Neue, sans-serif" }}
+              className="hidden md:block text-white text-2xl font-bold mx-auto ml-11"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
             >
               SARAZAITEN
             </h1>
@@ -45,7 +45,9 @@ function Menu(props) {
       <div
         className={`${
           showMenu ? "block" : "hidden"
-        } absolute md:relative md:block top-0 left-0 z-10 mainMenuStyle max-w-md mx-auto p-4 bg-blue-100 rounded-lg shadow-lg`}
+        } absolute md:relative md:block top-0 left-0 z-10 mainMenuStyle max-w-32 mx-auto p-4 bg-blue-100 rounded-lg shadow-lg ${
+          showMenu ? "mt-12" : ""
+        }`}
       >
         <ul>
           {menuItems.map((item, index) => (
