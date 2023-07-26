@@ -47,7 +47,7 @@ function App() {
         >
           <motion.div
             className="flex flex-col items-center"
-            initial={{ y: -100 }}
+            initial={{ y: 100 }}
             animate={{ y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
           >

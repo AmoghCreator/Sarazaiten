@@ -34,7 +34,7 @@ function Menu(props) {
               <FontAwesomeIcon icon={faBars} />
             </button>
             <h1
-              className="hidden md:block text-white text-2xl font-bold mx-auto ml-11"
+              className="hidden md:block text-white text-2xl font-bold "
               style={{ fontFamily: "'Orbitron', sans-serif" }}
             >
               SARAZAITEN
