@@ -9,7 +9,7 @@ function Menu(props) {
 
   async function getMenuItem() {
     let data = await axios.get("https://sarazaiten.el.r.appspot.com/");
-    setMenuItems(data.data);
+    setMenuItems(data.data.slice(0, 12));
   }
 
   function sendPrompt(e) {

@@ -36,7 +36,7 @@ function App() {
   }
 
   return (
-    <div className="overflow-none">
+    <div className="overflow-none bg-blue-100 min-h-screen">
       {showStartup && (
         <motion.div
           className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-blue-500"

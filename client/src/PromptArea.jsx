@@ -51,8 +51,8 @@ function PromptArea(props) {
           minHeight: "10vh",
           minWidth: "80vw",
           maxWidth: "80vw",
-          minHeight: "75vh",
-          maxHeight: "75vh",
+          minHeight: "85vh",
+          maxHeight: "85vh",
         }}
       >
         {qna.map((obj, index) => (
@@ -74,8 +74,7 @@ function PromptArea(props) {
       </div>
       {props.loader && (
         <div className="p-2 mb-4 text-center bg-green-500 text-white rounded-lg shadow-sm">
-          LOADING PLEASE WAIT, REMEMBER TO SCROLL DOWN AFTER THIS MESSAGE
-          DISAPPEARS
+          LOADING PLEASE WAIT, REMEMBER TO SCROLL DOWN
         </div>
       )}
       <form
